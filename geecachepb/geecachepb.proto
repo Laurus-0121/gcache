@@ -1,0 +1,20 @@
+syntax = "proto3";
+package geecachepb;
+//protoc --go_out=. geecachepb/*.proto
+option go_package="./;";  // 意思是输出到当前目录
+
+
+
+message Request {
+  string group = 1;
+  string key = 2;
+}
+
+message Response {
+  bytes value = 1;
+  int64  expire =2;
+}
+
+service GroupCache {
+  rpc Get(Request) returns (Response);
+}
